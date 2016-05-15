@@ -23,7 +23,7 @@ gulp.task('sass', function () {
       .pipe(sass())
       // .pipe(sass({outputStyle: 'compressed'}))
       .pipe(concat('style.min.css'))
-      .pipe(gulp.dest('project/build/styles'));
+      .pipe(gulp.dest('project/build/styles/'));
 });
 
 gulp.task('img', function() {
@@ -46,8 +46,8 @@ gulp.task('libs', function() {
   gulp.src(bc+'bootstrap/dist/**/*.*')
       .pipe(gulp.dest('./project/build/libs/bootstrap/'));
 
-  // gulp.src(bc+'bootstrap-material-design/dist/**/*.*')
-  //     .pipe(gulp.dest('./builds/dist/libs/bootstrap-material-design/'));
+  gulp.src(bc+'bootstrap-material-design/dist/**/*.*')
+      .pipe(gulp.dest('./project/build/libs/bootstrap-material-design/'));
 
   gulp.src([bc+'angular/angular.js',
             bc+'angular-animate/angular-animate.js',
@@ -69,7 +69,7 @@ gulp.task('webserver', function() {
   gulp.src('project/build/')
       .pipe(webserver({
         livereload: true,
-        open: false
+        open: true
       }));
 });
 

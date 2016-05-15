@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/style.min.css">
 </head>
-<body>
+<body ng-controller="FirstCtrl as first">
+    <!-- ng-app - дикертива для втозагрузки приложения -->
+    <!-- Директива ngClass позволяет вам динамически устанавливать CSS-класс для HTML элементов -->
     <div class="container">
-        <h1>{{ hello }}</h1>
+    <input type="text" ng-model="first.greeting">
+        <div ng-class="first.greeting">
+            {{first.greeting}} {{world}}
+        </div>
     </div>
-    <input type="text" ng-model="hello">
-    <h1> hellog world</h1>
+
   <!-- Others JS Files -->
   <script src="libs/jquery/jquery.js"></script>
   <script src="libs/bootstrap-material-design/js/material.js"></script>
