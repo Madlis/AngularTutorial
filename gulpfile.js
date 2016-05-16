@@ -14,7 +14,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('html', function() {
-  gulp.src('project/src/*.html')
+  gulp.src('project/src/**/*.html')
     .pipe(gulp.dest('project/build/'))
 });
 
