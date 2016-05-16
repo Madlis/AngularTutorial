@@ -6,24 +6,28 @@
     <link rel="stylesheet" href="styles/style.min.css">
 </head>
 <body>
+
+    <div ng-app="superhero">
+        <superman></superman>
+    </div>
     <!-- ng-app - дикертива для втозагрузки приложения -->
     <!-- Директива ngClass позволяет вам динамически устанавливать CSS-класс для HTML элементов -->
-      <div class="container" ng-app="myApp">
+<!--       <div class="container" ng-app="myApp">
         <div ng-controller="AvengersCtrl as avengersCtrl">
           I have {{avengersCtrl.avengers.cast.length}} <input type="text" ng-model="search.$">
-          <table>
+          <table> -->
                                 <!-- avengersCtrl.avengers = Avengers; -->
                                 <!-- Упорядочивание заданного массива array на основании выражения  avengersCtrl.avengers.cast-->
                                 <!-- limitTo  ограничитель-->
-            <tr ng-repeat="actor in avengersCtrl.avengers.cast | filter:search | orderBy:'-name' | limitTo: 5">
+            <!-- <tr ng-repeat="actor in avengersCtrl.avengers.cast | filter:search | orderBy:'-name' | limitTo: 5"> -->
             <!-- Фильтры используются для форматирования данных, показываемых пользователю. -->
             <!-- {{ expression | [ filter_name ] }} -->
-                <td>{{actor.name | uppercase}}</td>
+<!--                 <td>{{actor.name | uppercase}}</td>
                 <td>{{actor.character | lowercase}}</td>
             </tr>
           </table>
         </div>
-      </div>
+      </div> -->
 
   <!-- Others JS Files -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script> -->
@@ -34,5 +38,6 @@
   <script src="libs/angular/angular.concat.js"></script>
   <!-- Our JS App Fies -->
   <script src="app/app.js"></script>
+
 </body>
 </html>
