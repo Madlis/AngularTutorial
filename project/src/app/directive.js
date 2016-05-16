@@ -5,17 +5,22 @@ var app = angular.module("behaviorApp", [])
 // A – атрибут
 // C – класс
 // M – комментарий
+// Директива – это что-то типа вспомогательного элемента для отрисовки представления. Может быть встроена в HTML следующими способами:
+// В виде атрибута тега    <div directive=”expression”>
+
 app.directive('enter', function () {
-    return function (scope, element){
+    // directive private methods here
+    return function ($scope, element, attrs){
+        //directive logic
         element.bind('mouseenter', function(){
-            console.log("I'm inside of you!");
+            element.addClass(attrs.enter);
         })
     }
 })
 app.directive('leave', function () {
-    return function (scope, element){
+    return function ($scope, element, attrs){
         element.bind('mouseleave', function(){
-            console.log("I'm leaving on a jet plane");
+            element.removeClass(attrs.enter);
         })
     }
 })
