@@ -8,17 +8,17 @@
 <body>
     <!-- ng-app - дикертива для втозагрузки приложения -->
     <!-- Директива ngClass позволяет вам динамически устанавливать CSS-класс для HTML элементов -->
-    <div ng-app="myApp">
-        <div ng-controller="FirstCtrl">
-          <input type="text" ng-model="data.message">
-          <h1>{{data.message}}</h1>
+      <div class="container" ng-app="myApp">
+        <div ng-controller="AvengersCtrl as avengersCtrl">
+          I have {{avengersCtrl.avengers.cast.length}} <input type="text" ng-model="search.$">
+          <table>
+            <tr ng-repeat="actor in avengersCtrl.avengers.cast | filter:search">
+                <td>{{actor.name}}</td>
+                <td>{{actor.character}}</td>
+            </tr>
+          </table>
         </div>
-
-        <div ng-controller="SecondCtrl">
-          <input type="text" ng-model="data.message">
-          <h1>{{data.message|reverse}}</h1>
-        </div>
-    </div>
+      </div>
 
   <!-- Others JS Files -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script> -->
