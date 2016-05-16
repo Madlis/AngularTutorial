@@ -87,21 +87,24 @@ function AvengersCtrl(Avengers) {
     avengersCtrl.avengers = Avengers;
 }
 
-var app = angular.module("superhero", [])
-
-app.directive('superman', function () {
-    return {
-        restrict: 'A',
-        link: function (){
-            alert(" I'm working stronger")
-        }
-    };
+var app = angular.module("behaviorApp", [])
+// http://stepansuvorov.com/blog/2013/06/start-with-angularjs-part2/
+// restrict     задает способ встраивания(смотри выше):
+// E – тэг(имя элемента)
+// A – атрибут
+// C – класс
+// M – комментарий
+app.directive('enter', function () {
+    return function (scope, element){
+        element.bind('mouseenter', function(){
+            console.log("I'm inside of you!");
+        })
+    }
 })
-app.directive('flash', function () {
-    return {
-        restrict: 'A',
-        link: function (){
-            alert(" I'm working faster")
-        }
-    };
+app.directive('leave', function () {
+    return function (scope, element){
+        element.bind('mouseleave', function(){
+            console.log("I'm leaving on a jet plane");
+        })
+    }
 })
