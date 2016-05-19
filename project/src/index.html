@@ -7,13 +7,13 @@
 </head>
 <body>
 
-    <div ng-app="phoneApp">
-        <div ng-controller="AppCtrl as appctrl">
-            <div phone dial="appctrl.callHome(message)"></div>
-            <div phone dial="appctrl.callHome(message)"></div>
-            <div phone dial="appctrl.callHome(message)"></div>
-        </div>
-    </div>
+  <div ng-app="phoneApp">
+      <div ng-controller="AppCtrl">
+          <phone number="555-1234" network="network" make-call="leaveVoicemail(number, message)"></phone>
+          <phone number="867-5309" network="network" make-call="leaveVoicemail(number, message)"></phone>
+          <phone number="911" network="network" make-call="leaveVoicemail(number, message)"></phone>
+      </div>
+  </div>
     <!-- ng-app - дикертива для втозагрузки приложения -->
     <!-- Директива ngClass позволяет вам динамически устанавливать CSS-класс для HTML элементов -->
 <!--       <div class="container" ng-app="myApp">

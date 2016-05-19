@@ -104,25 +104,34 @@ function AvengersCtrl(Avengers) {
 // @ – переменную локального scope со значением DOM аттрибута
 // = – двустороннее связывание значения атрибута и переменной
 // & – позволяет выполнять выражения из аттрибута в рамках родительского scope
+// https://habrahabr.ru/post/179755/
 
 var app = angular.module("phoneApp", []);
 
-app.controller("AppCtrl", function() {
-    var appctrl = this;
-    appctrl.callHome = function(message) {
-        alert(message);
+app.controller("AppCtrl", function($scope) {
+    $scope.leaveVoicemail = function(number, message) {
+        alert("Number: " + number + " said: " + message);
     };
-})
+});
 
 app.directive("phone", function() {
     return {
+        restrict: "E",
         scope: {
-            dial: "&"
+            number: "@",
+            network: "=",
+            makeCall: "&"
         },
-        template: '<input type="text" ng-model="value">' +
-          '<div class="button" ng-click="dial({message:value})">Call home!</div>'
+        template: '<div class="panel">Number: {{number}} Network:<select ng-model="network" ng-options="net for net in networks">' +
+          '<input type="text" ng-model="value">' +
+          '<div class="button" ng-click="makeCall({number: number, message: value})">Call home!</div></div>',
+
+        link: function(scope) {
+            scope.networks = ["Verizon", "AT&T", "Sprint"];
+            scope.network = scope.networks[0];
+        }
     };
-})
+});
 
 
 
