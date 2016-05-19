@@ -109,16 +109,13 @@ function AvengersCtrl(Avengers) {
 var app = angular.module("phoneApp", []);
 
 app.controller("AppCtrl", function($scope) {
-    var appctrl = this;
+    this.sayHi = function (){
+        alert('hi');
+    }
+    return $scope.AppCtrl = this;
 });
 
-app.directive('panel', [function () {
-    return {
-        restrict: 'E',
-         transclude: true, //Передача содержимого из директивы шаблону включается очень просто. Чтобы это сделать, просто установите transclude: true:
-        template: '<div class="panel" ng-transclude>This is a panel companent</div>'
-    };
-}])
+
 
 
 
