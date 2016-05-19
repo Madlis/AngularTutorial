@@ -99,6 +99,12 @@ function AvengersCtrl(Avengers) {
 
 
 
+// Изолированный scope может влючать в себе ссылки на элементы родительского scope при использовании нетривиального синтаксиса(специальный префикс символ (@, =, & )перед имеем метода/переменой):
+
+// @ – переменную локального scope со значением DOM аттрибута
+// = – двустороннее связывание значения атрибута и переменной
+// & – позволяет выполнять выражения из аттрибута в рамках родительского scope
+
 var app = angular.module("drinkApp", []);
 
 app.controller("AppCtrl", function() {
@@ -109,9 +115,9 @@ app.controller("AppCtrl", function() {
 app.directive("drink", function() {
     return {
         scope: {
-            flavor: "@"
+            flavor: "=" 
         },
-        template: '<div>{{flavor}}</div>'
+        template: '<input type="text" ng-model="flavor">'
     };
 })
 

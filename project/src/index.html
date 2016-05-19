@@ -9,8 +9,10 @@
 
     <div ng-app="drinkApp">
         <div ng-controller="AppCtrl">
+            <p> ctrl</p>
             <input type="text" ng-model="ctrlFlavor">
-            <div drink flavor="{{ctrlFlavor}}"></div>
+            <p>directive </p>  
+            <div drink flavor="ctrlFlavor"></div>
         </div>
     </div>
     <!-- ng-app - дикертива для втозагрузки приложения -->
