@@ -7,12 +7,11 @@
 </head>
 <body>
 
-    <div ng-app="drinkApp">
-        <div ng-controller="AppCtrl">
-            <p> ctrl</p>
-            <input type="text" ng-model="ctrlFlavor">
-            <p>directive </p>  
-            <div drink flavor="ctrlFlavor"></div>
+    <div ng-app="phoneApp">
+        <div ng-controller="AppCtrl as appctrl">
+            <div phone dial="appctrl.callHome(message)"></div>
+            <div phone dial="appctrl.callHome(message)"></div>
+            <div phone dial="appctrl.callHome(message)"></div>
         </div>
     </div>
     <!-- ng-app - дикертива для втозагрузки приложения -->
