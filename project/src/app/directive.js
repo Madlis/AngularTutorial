@@ -17,30 +17,25 @@
 // & – позволяет выполнять выражения из аттрибута в рамках родительского scope
 // https://habrahabr.ru/post/179755/
 
-var app = angular.module("phoneApp", []);
+var app = angular.module("app", []);
 
-var phoneAppStuff = {};
-
-phoneAppStuff.controllers = {};
-
-phoneAppStuff.controllers.AppCtrl = function ($scope) {
-    this.sayHi = function () {
-        alert('hi')
-    }
-
-    return $scope.AppCtrl = this;
-}
-phoneAppStuff.directives = {};
-phoneAppStuff.directives.panel = function () {
+app.directive("zippy", function() {
     return {
-        retrict: 'E'
-    }
-}
+        restrict: "E",
+        transclude: true,
+        scope: {
+            title: "@"
+        },
+        template: '<div><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div><div>',
+        link: function(scope) {
+            scope.isContentVisible = false;
 
-app.filter()
-app.directive(phoneAppStuff.directives);
-app.controller(phoneAppStuff.controllers);
-
+            scope.toggleContent = function() {
+                scope.isContentVisible = !scope.isContentVisible;
+            };
+        }
+    };
+});
 
 
 

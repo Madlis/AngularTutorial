@@ -7,10 +7,13 @@
 </head>
 <body>
 
-  <div ng-app="phoneApp">
-      <div ng-controller="AppCtrl">
-        <div class="btn btn-info" ng-click="AppCtrl.sayHi()">Click me!</div>
-      </div>
+  <div ng-app="app">
+    <input type="text" ng-model="model.title">
+    <input type="text" ng-model="model.content">
+
+    <zippy title="{{model.title}}">
+        The content is: {{model.content}}
+    </zippy>
   </div>
     <!-- ng-app - дикертива для втозагрузки приложения -->
     <!-- Директива ngClass позволяет вам динамически устанавливать CSS-класс для HTML элементов -->
