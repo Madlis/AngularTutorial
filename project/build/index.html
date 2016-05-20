@@ -8,7 +8,18 @@
 <body>
 
   <div ng-app="app">
-    <div ng-controller="MyCtrl"></div>
+    <script type="text/ng-template" id="zippy.html">
+        <div><h3 ng-click="toggleContent()">{{title}}</h3>
+          <div ng-show="isContentVisible" ng-transclude></div>
+        </div>
+    </script>
+
+    <input type="text" ng-model="model.title">
+    <input type="text" ng-model="model.content">
+
+    <zippy title="{{model.title}}">
+        The content is: {{model.content}}
+    </zippy>
   </div>
     <!-- ng-app - дикертива для втозагрузки приложения -->
     <!-- Директива ngClass позволяет вам динамически устанавливать CSS-класс для HTML элементов -->
