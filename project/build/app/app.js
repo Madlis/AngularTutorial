@@ -111,9 +111,17 @@ function AvengersCtrl(Avengers) {
 // $compile - Эта функция превращает любое допустимое выражение AngularJS в функцию. Эту функцию затем можно вызвать, передав в неё 1 или 2 параметра, но для Html.
 
 // angular.element - Оборачивает родной DOM элемент или HTML строку в элемент jQuery.
+
+// $templateCache - Кэш используемый для хранения html шаблонов.
+
+// run - Используйте этот метод для регистрации работы, которую нужно сделать когда инжектор загрузит все модули.
 var app = angular.module("app", []);
 
-app.directive("zippy", function() {
+app.run(function ($templateCache){
+    $templateCache.put('zippy.html','<div><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div></div>')
+})
+app.directive("zippy", function($templateCache) {
+    console.log($templateCache.get('zippy.html'))
     return {
         restrict: "E",
         transclude: true,
