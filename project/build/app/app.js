@@ -113,16 +113,22 @@ function AvengersCtrl(Avengers) {
 // angular.element - Оборачивает родной DOM элемент или HTML строку в элемент jQuery.
 var app = angular.module("app", []);
 
-app.controller("MyCtrl", ['$scope', '$http', function(b, a) {
-    console.log(b);
-}]);
-
-app.directive("myDirective", function($http, $parse) {
+app.directive("zippy", function() {
     return {
-        link: function($scope, scope, attrs) {
-            console.log($scope);
+        restrict: "E",
+        transclude: true,
+        scope: {
+            title: "@"
+        },
+        templateUrl: 'zippy.html',
+        link: function(scope) {
+            scope.isContentVisible = false;
+
+            scope.toggleContent = function() {
+                scope.isContentVisible = !scope.isContentVisible;
+            };
         }
-    }
+    };
 });
 
 
