@@ -106,22 +106,30 @@ function AvengersCtrl(Avengers) {
 // & – позволяет выполнять выражения из аттрибута в рамках родительского scope
 // https://habrahabr.ru/post/179755/
 
+// Используя $watch можно добавить в scope “наблюдателя”. Наблюдатель — это то, что будет получать уведомление, когда в соответствующем scope произойдет изменение.
+
+// $compile - Эта функция превращает любое допустимое выражение AngularJS в функцию. Эту функцию затем можно вызвать, передав в неё 1 или 2 параметра, но для Html.
 var app = angular.module("app", []);
 
-app.directive("zippy", function() {
+app.directive("dumbPassword", function() {
+    var validElement = angular.element("<div>{{model.input}}</div>");
+
+    var link = function(scope) {
+        scope.$watch("model.input", function(value) {
+            if (value === "password") {
+                validElement.toggleClass("alert-danger alert");
+            }
+        });
+    };
+
     return {
         restrict: "E",
-        transclude: true,
-        scope: {
-            title: "@"
-        },
-        template: '<div><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div><div>',
-        link: function(scope) {
-            scope.isContentVisible = false;
+        replace: true,
+        template: "<div><input type=\"text\" ng-model=\"model.input\"><div>",
+        compile: function(tElem) {
+            tElem.append(validElement);
 
-            scope.toggleContent = function() {
-                scope.isContentVisible = !scope.isContentVisible;
-            };
+            return link;
         }
     };
 });
