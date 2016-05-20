@@ -29,15 +29,20 @@
 var app = angular.module("app", ["ngRoute"]);
 // Используется для внешнего связывания URL с контроллерами и представлениями (HTML частичками). Он отслеживает изменения $location.url() и пытается по карте путей найти для него существующее определение.
 app.config(function($routeProvider) {
-    $routeProvider.when('/',//Добавляет новое определение маршрута в сервис $route.
-      {
-        templateUrl: "../app/app.html",
-        controller: "AppCtrl"
-      }
-    )
+    // $routeProvider.when('/',//Добавляет новое определение маршрута в сервис $route.
+    //   {
+    //     templateUrl: "../app/app.html",
+    //     controller: "AppCtrl"
+    //   }
+    // )
 })
 
-app.controller("AppCtrl", function($scope) {
+app.controller("AppCtrl", function($scope, $route) {
+    $route.routes["/"] = {
+         {
+        templateUrl: "../app/app.html",
+        controller: "AppCtrl"
+    }
     $scope.model = {
         message: "This is my app!!!"
     }
