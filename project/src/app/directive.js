@@ -26,29 +26,22 @@
 // $templateCache - Кэш используемый для хранения html шаблонов.
 
 // run - Используйте этот метод для регистрации работы, которую нужно сделать когда инжектор загрузит все модули.
-var app = angular.module("app", []);
-
-app.run(function ($templateCache){
-    $templateCache.put('zippy.html','<div><h3 ng-click="toggleContent()">{{title}}</h3><div ng-show="isContentVisible" ng-transclude></div></div>')
+var app = angular.module("app", ["ngRoute"]);
+// Используется для внешнего связывания URL с контроллерами и представлениями (HTML частичками). Он отслеживает изменения $location.url() и пытается по карте путей найти для него существующее определение.
+app.config(function($routeProvider) {
+    $routeProvider.when('/',//Добавляет новое определение маршрута в сервис $route.
+      {
+        templateUrl: "../app/app.html",
+        controller: "AppCtrl"
+      }
+    )
 })
-app.directive("zippy", function($templateCache) {
-    console.log($templateCache.get('zippy.html'))
-    return {
-        restrict: "E",
-        transclude: true,
-        scope: {
-            title: "@"
-        },
-        templateUrl: 'zippy.html',
-        link: function(scope) {
-            scope.isContentVisible = false;
 
-            scope.toggleContent = function() {
-                scope.isContentVisible = !scope.isContentVisible;
-            };
-        }
-    };
-});
+app.controller("AppCtrl", function($scope) {
+    $scope.model = {
+        message: "This is my app!!!"
+    }
+})
 
 
 
