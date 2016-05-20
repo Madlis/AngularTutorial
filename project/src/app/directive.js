@@ -20,29 +20,20 @@
 // Используя $watch можно добавить в scope “наблюдателя”. Наблюдатель — это то, что будет получать уведомление, когда в соответствующем scope произойдет изменение.
 
 // $compile - Эта функция превращает любое допустимое выражение AngularJS в функцию. Эту функцию затем можно вызвать, передав в неё 1 или 2 параметра, но для Html.
+
+// angular.element - Оборачивает родной DOM элемент или HTML строку в элемент jQuery.
 var app = angular.module("app", []);
 
-app.directive("dumbPassword", function() {
-    var validElement = angular.element("<div>{{model.input}}</div>");
+app.controller("MyCtrl", ['$scope', '$http', function(b, a) {
+    console.log(b);
+}]);
 
-    var link = function(scope) {
-        scope.$watch("model.input", function(value) {
-            if (value === "password") {
-                validElement.toggleClass("alert-danger alert");
-            }
-        });
-    };
-
+app.directive("myDirective", function($http, $parse) {
     return {
-        restrict: "E",
-        replace: true,
-        template: "<div><input type=\"text\" ng-model=\"model.input\"><div>",
-        compile: function(tElem) {
-            tElem.append(validElement);
-
-            return link;
+        link: function($scope, scope, attrs) {
+            console.log($scope);
         }
-    };
+    }
 });
 
 
